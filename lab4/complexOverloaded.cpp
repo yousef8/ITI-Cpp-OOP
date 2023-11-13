@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cassert>
+#include <string_view>
 
 using namespace std;
 
@@ -105,28 +107,35 @@ public:
         return oldComp;
     }
 
+    // Comparison Operator
     bool operator==(const Complex &c) const
     {
         return (getReal() == c.getReal() && getImag() == c.getImag());
     }
 
-    void print(void)
+    // Subscript Overload
+    int &operator[](int idx)
     {
-        cout << getReal();
-        if (getImag() > 0)
+        assert((0 == idx || 1 == idx) && "Need to provide Exceptions for Index out of range error");
+
+        if (0 == idx)
         {
-            cout << "+" << getImag() << "j"
-                 << "\n";
+            return real;
         }
-        else if (getImag() < 0)
+
+        return imag;
+    }
+
+    int &operator[](std::string_view str)
+    {
+        assert(("real" == str || "Real" == str || "imag" == str || "Imag" == str) && "Need to provide Exceptions for Index out of range error");
+
+        if ("real" == str || "Real" == str)
         {
-            cout << getImag() << "j"
-                 << "\n";
+            return real;
         }
-        else
-        {
-            cout << "\n";
-        }
+
+        return imag;
     }
 
 private:
@@ -153,6 +162,16 @@ std::ostream &operator<<(std::ostream &out, const Complex &c)
     }
 
     return out;
+}
+
+std::istream &operator>>(std::istream &in, Complex &c)
+{
+    int real = 0, imag = 0;
+    in >> real >> imag;
+    c.setReal(real);
+    c.setImag(imag);
+
+    return in;
 }
 
 Complex operator+(int num, const Complex &c)
@@ -193,5 +212,12 @@ int main()
 
     // ++c1;
     // std::cout << c1 << "\n";
+
+    // std::cout << "real : " << c1[0] << ", Imag : " << c1[1] << "\n";
+    // std::cout << "real : " << c1["real"] << ", Imag : " << c1["imag"] << "\n";
+    std::cout << "Enter Complex number (real imag) : ";
+    std::cin >> c1;
+    std::cout << c1;
+
     return 0;
 }

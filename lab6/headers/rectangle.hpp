@@ -64,6 +64,16 @@ std::istream &operator>>(std::istream &in, Rect &r)
     std::cout << "Lower Right point\n";
     in >> r.bottomRight;
 
+    std::cout << "Color (WHITE 0 ~ BLACK 15)\n";
+    int color = 0;
+    getIntInput(color, "Color : ");
+    while (0 > color || color > 15)
+    {
+        std::cout << "Must be positive integer between 0 and 15\n";
+        getIntInput(color, "Color : ");
+    }
+    r.setColor(color);
+
     return in;
 }
 

@@ -13,7 +13,7 @@ public:
         color = _color;
     }
 
-    int getColor()
+    int getColor() const
     {
         return color;
     }

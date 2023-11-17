@@ -40,6 +40,9 @@ int main()
     Line lines[shapes]{};
     int lineIdx{0};
 
+    int gdriver = DETECT, gmode, errorcode;
+    initgraph(&gdriver, &gmode, "d:\\tc\\bgi");
+
     for (int i{0}; i < shapes; ++i)
     {
         int choice{0};
@@ -49,37 +52,21 @@ int main()
         {
         case 0:
             std::cin >> circles[circIdx++];
+            circles[circIdx - 1].draw();
             break;
         case 1:
             std::cin >> recs[recIdx++];
+            recs[recIdx - 1].draw();
             break;
         case 2:
             std::cin >> lines[lineIdx++];
+            lines[lineIdx - 1].draw();
             break;
         default:
             std::cout << "Wrong Choice\n";
             --i;
             break;
         }
-    }
-
-    // Draw Shapes
-    int gdriver = DETECT, gmode, errorcode;
-    initgraph(&gdriver, &gmode, "d:\\tc\\bgi");
-
-    for (int i{0}; i < recIdx; ++i)
-    {
-        recs[i].draw();
-    }
-
-    for (int i{0}; i < circIdx; ++i)
-    {
-        circles[i].draw();
-    }
-
-    for (int i{0}; i < lineIdx; ++i)
-    {
-        lines[i].draw();
     }
 
     getch();

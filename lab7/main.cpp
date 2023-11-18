@@ -47,8 +47,6 @@ int main()
         {
         case 0:
         {
-            // Circle* c {new Circle};
-            // std::cin >> *c;
             shapes[cnt++] = new Circle;
             std::cin >> *(shapes[cnt - 1]);
             shapes[cnt - 1]->draw();
@@ -56,8 +54,6 @@ int main()
         }
         case 1:
         {
-            // Rect * r {new Rect};
-            // std::cin >> *r;
             shapes[cnt++] = new Rect;
             std::cin >> *(shapes[cnt - 1]);
             shapes[cnt - 1]->draw();
@@ -66,8 +62,6 @@ int main()
 
         case 2:
         {
-            // Line* l {new Line};
-            // std::cin >> *l;
             shapes[cnt++] = new Line;
             std::cin >> *(shapes[cnt - 1]);
             shapes[cnt - 1]->draw();
